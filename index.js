@@ -7,19 +7,17 @@
  */
 (function (root, factory) {
   if (typeof define === 'function' && define.amd) {
-    // AMD. Register as an anonymous module.
+    // AMD环境
     define([], factory);
   } else if (typeof exports === 'object') {
-    // Node. Does not work with strict CommonJS, but
-    // only CommonJS-like environments that support module.exports,
-    // like Node.
+    // 类CommonJS的环境
     module.exports = factory();
   } else {
     // Browser globals (root is window)
     root.diffChinese = factory();
   }
 }(this, function () {
-  // ESCAPE CHARS
+  // ESCAPE CHARS 转义字符
   function escape(s) {
     var n = s;
     n = n.replace(/&/g, "&amp;");
@@ -44,7 +42,8 @@
   function diff(o, n) {
     var ns = new Object();
     var os = new Object();
-
+    //遍历字符串
+    //基于每个字符生成一个对象 rows数组记录字符串出现位置
     for (var i = 0; i < n.length; i++) {
       if (ns[n[i]] == null)
         ns[n[i]] = { rows: new Array(), o: null };
@@ -57,14 +56,18 @@
       os[o[i]].rows.push(i);
     }
 
+    // 枚举新字符串对象
     for (var i in ns) {
+      // ns和os存在同一字符且只出现过一次
       if (ns[i].rows.length == 1 && typeof (os[i]) != "undefined" && os[i].rows.length == 1) {
+        //使n o数组对应字符串生成对象
         n[ns[i].rows[0]] = { text: n[ns[i].rows[0]], row: os[i].rows[0] };
         o[os[i].rows[0]] = { text: o[os[i].rows[0]], row: ns[i].rows[0] };
       }
     }
 
     for (var i = 0; i < n.length - 1; i++) {
+      // 字符相同 && 下一个字符不同 && 
       if (n[i].text != null && n[i + 1].text == null && n[i].row + 1 < o.length && o[n[i].row + 1].text == null &&
         n[i + 1] == o[n[i].row + 1]) {
         n[i + 1] = { text: n[i + 1], row: n[i].row + 1 };

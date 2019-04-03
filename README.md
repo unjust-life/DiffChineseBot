@@ -4,7 +4,7 @@ diffChineseBot
 ## 介绍
 该模块对两个字符串进行比较并输出差异。
 
-它基于John Resig的Javascript Diff算法(http://ejohn.org/projects/javascript-diff-algorithm/)，并大量借鉴了该算法。
+它基于John Resig的Javascript Diff算法，并大量借鉴了该算法。
 
 主要区别在于，该模块支持在包含中文或其他使用多字节字符和/或不使用空格分隔单词的语言的字符串中查找差异。
 

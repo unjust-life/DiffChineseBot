@@ -61,5 +61,7 @@ var diff = diffChinese( beforeString, afterString, point );
 第三个参数：不匹配度 	Number 默认可不传 不匹配度高于设定将不再进行比对高亮
 
 样式类名
+
 del-text  旧文本不匹配文本
+
 new-text  新文本不匹配文本

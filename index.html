@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./index.js"></script>
+    <style>
+        .del-text {
+            background-color: rgba(240, 190, 190, 1);
+            text-decoration: line-through;
+        }
+        .new-text {
+            background-color: #aaffaa;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <div id="before">
+            the quick brown fox
+        </div>
+        <div id="after">
+            the quick brown dog
+        </div>
+
+    </div>
+</body>
+<script>
+
+var beforeString = document.getElementById('before').innerText
+var afterString = document.getElementById('after').innerText
+var point = .90
+
+var diff = diffChinese( beforeString, afterString, point );
+
+document.getElementById('before').innerHTML = diff.before
+document.getElementById('after').innerHTML = diff.after
+
+
+</script>
+</html>

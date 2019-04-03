@@ -3,8 +3,7 @@
  * Author: Brian van Damme
  * Date: March 10, 2015
  *
- * 这个库的源码是基于原作者Brian van Damme的diffChinese
- * 根据业务需求进行改动的版本
+ * 这个库是基于原作者Brian van Damme的diffChinese根据业务需求进行改动的版本
  */
 (function (root, factory) {
   if (typeof define === 'function' && define.amd) {

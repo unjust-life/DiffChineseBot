@@ -4,16 +4,14 @@ diffChineseBot
 ## 介绍
 该模块对两个字符串进行比较并输出差异。
 
-它基于John Resig的Javascript Diff算法(http://ejohn.org/projects/javascript-diff-algorithm/)，并大量借鉴了该算法。谢谢你,约翰!
+它基于John Resig的Javascript Diff算法(http://ejohn.org/projects/javascript-diff-algorithm/)，并大量借鉴了该算法。
 
 主要区别在于，该模块支持在包含中文或其他使用多字节字符和/或不使用空格分隔单词的语言的字符串中查找差异。
 
-
-As an example here is how we at [KAWO.com](http://kawo.com) use this package in our app:
+使用效果:
 
 ![Image text](./diff-example.png)
 
-##使用方式
 
 ### npm安装
 
@@ -21,7 +19,7 @@ As an example here is how we at [KAWO.com](http://kawo.com) use this package in 
 $ npm install diffchinesebot
 ```
 
-### RequireJS (AMD规范)
+### RequireJS (推荐引入方式)
 ```javascript
 require.config({
 	paths: {
@@ -43,7 +41,7 @@ window.diffChinese(oldStr, newStr, point)
 </script>
 ```
 
-## Usage
+## 使用方式
 
 diffChineseBot包只包含一个函数diffChinese，可以这样使用:
 ```javascript
@@ -61,3 +59,7 @@ var diff = diffChinese( beforeString, afterString, point );
 第二个参数：新字符串	String
 
 第三个参数：不匹配度 	Number 默认可不传 不匹配度高于设定将不再进行比对高亮
+
+样式类名
+del-text  旧文本不匹配文本
+new-text  新文本不匹配文本

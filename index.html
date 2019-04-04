@@ -31,9 +31,13 @@
 
 var beforeString = document.getElementById('before').innerText
 var afterString = document.getElementById('after').innerText
-var point = .90
+var option = {
+    point: 0.5,
+    // beforeClass: 'before',
+    // afterClass: 'after'
+}
 
-var diff = diffChinese( beforeString, afterString, point );
+var diff = diffChinese( beforeString, afterString, option);
 
 document.getElementById('before').innerHTML = diff.before
 document.getElementById('after').innerHTML = diff.after

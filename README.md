@@ -54,9 +54,8 @@ var diff = diffChineseBot( beforeString, afterString, option);
 ```
 
 - diffChineseBot( beforeString, afterString, option)
-- diffChineseBot函数的第三个参数是可选的，接受一个参数配置对象。对象可配置属性如下表:
-
-<table style="width: 100%">
+- option对象参数值：
+<table>
   <thead>
     <tr>
         <td>名称</td>
@@ -67,22 +66,22 @@ var diff = diffChineseBot( beforeString, afterString, option);
   </thead>
   <tobody>
     <tr>
-	<td>point</td>
-	<td>设置文本比对差异率上限 超出设定值后不再处理文本元素 什么也不会发生</td>
-	<td>空</td>
-	<td>0-1 Number</td>
+      <td>point</td>
+      <td>设置文本比对差异率上限 超出设定值后不再处理文本元素 什么也不会发生</td>
+      <td>空</td>
+      <td>0-1 Number</td>
     </tr>
     <tr>
-	<td>beforeClass</td>
-	<td>设置旧文本和新文本不同处的样式类名</td>
-	<td>del-text</td>
-	<td>String</td>
+      <td>beforeClass</td>
+      <td>设置旧文本和新文本不同处的样式类名</td>
+      <td>del-text</td>
+      <td>String</td>
     </tr>
     <tr>
-	<td>afterClass</td>
-	<td>设置新文本和旧文本不同处的样式类名</td>
-	<td>new-text</td>
-	<td>String</td>
+      <td>afterClass</td>
+      <td>设置新文本和旧文本不同处的样式类名</td>
+      <td>new-text</td>
+      <td>String</td>
     </tr>
   </tobody>
 </table>

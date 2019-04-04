@@ -86,9 +86,57 @@
     return { o: o, n: n };
   }
 
+  // 分析文本差异率
+  function count(out) {
+    var num = 0;
+    for (var i = 0; i < out.n.length; i++) {
+      if (out.n[i].text == null) {
+        num++
+      }
+    }
+    num = num / out.n.length
+    // 返回差异率
+    console.log('文本差异率', num*100 + '%')
+    return num
+  }
+  // 给不同处的文本插入元素
+  function edit(out, oSpace, nSpace, option) {
+    var beforeClass = 'del-text';
+    var afterClass = 'new-text';
+    if (option) {
+      beforeClass = option.beforeClass ? option.beforeClass : 'del-text'
+      afterClass = option.afterClass ? option.beforeClass : 'new-text'
+    }
+
+    var os = "";
+    for (var i = 0; i < out.o.length; i++) {
+      if (out.o[i].text != null) {
+        os += oSpace[i];
+        os += escape(out.o[i].text);
+      } else {
+        // WRAP IN <DEL> TAG IF REMOVED
+        os += "<span class=" + beforeClass + ">" + oSpace[i] + escape(out.o[i]) + "</span>";
+      }
+    }
+
+    var ns = "";
+    for (var i = 0; i < out.n.length; i++) {
+      if (out.n[i].text != null) {
+        ns += nSpace[i];
+        ns += escape(out.n[i].text);
+      } else {
+        // WRAP IN <INS> TAG IF NEW
+        ns += "<span class=" + afterClass + ">" + nSpace[i] + escape(out.n[i]) + "</span>";
+      }
+    }
+    return { before: os, after: ns };
+  }
+
+
   // This example returns an object, but the module
   // can return a function as the exported value.
-  return function (o, n, point) {
+  return function (o, n, option) {
+    option? option : undefined
 
     // TRIM 去除两端空格
     o = o.replace(/\s+$/, '');
@@ -102,43 +150,20 @@
     var oSpace = getSpaces(o);
     var nSpace = getSpaces(n);
 
-    // 分析重复占比  新文本和旧文本的差异率 count
-    var count = 0;
-    for (var i = 0; i < out.n.length; i++) {
-      if (out.n[i].text == null) {
-        count++
+    // 如果参数对象存在且point存在
+    if (option && option.point != undefined) {
+      //计算差异率结果
+      var res = count(out)
+      // 如果差异率大于设定的point百分比值，将不再对文本进行高亮
+      if (res > option.point) {
+        return { before: o, after: n };
+      } else {
+      // 返回默认结果
+        return edit(out, oSpace, nSpace, option)
       }
-    }
-    count = count / out.n.length
-
-    // 如果差异率大于设定的point百分比值，将不再对文本进行高亮
-    if (point != undefined && count > point) {
-      return { before: o, after: n };
     } else {
-      // REBUILD ORIGINAL STRING
-      var os = "";
-      for (var i = 0; i < out.o.length; i++) {
-        if (out.o[i].text != null) {
-          os += oSpace[i];
-          os += escape(out.o[i].text);
-        } else {
-          // WRAP IN <DEL> TAG IF REMOVED
-          os += "<span class='del-text'>" + oSpace[i] + escape(out.o[i]) + "</span>";
-        }
-      }
-
-      // REBUILD NEW STRING
-      var ns = "";
-      for (var i = 0; i < out.n.length; i++) {
-        if (out.n[i].text != null) {
-          ns += nSpace[i];
-          ns += escape(out.n[i].text);
-        } else {
-          // WRAP IN <INS> TAG IF NEW
-          ns += "<span class='new-text'>" + nSpace[i] + escape(out.n[i]) + "</span>";
-        }
-      }
+      //返回默认结果
+      return edit(out, oSpace, nSpace, option)
     }
-    return { before: os, after: ns };
   };
 }));

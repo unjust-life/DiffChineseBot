@@ -48,12 +48,13 @@ diffChineseBot包只包含一个函数diffChinese，可以这样使用:
 var beforeString = 'the quick brown fox';
 var afterString = 'the quick brown dog';
 
-var diff = diffChineseBot( beforeString, afterString);
+var diff = diffChineseBot( beforeString, afterString, option);
 
 // => { before: 'the quick brown <del>fox</del>', after: 'the quick brown <ins>dog</ins>' }
 ```
 
-diffChineseBot函数第三个参数是可选的，接受一个参数配置对象
+- diffChineseBot( beforeString, afterString, option)
+- diffChineseBot函数的第三个参数是可选的，接受一个参数配置对象。对象可配置属性如下表:
 
 <table style="width: 100%">
   <thead>

@@ -13,31 +13,31 @@ diffChineseBot
 ![Image text](./diff-example.png)
 
 
-### npm安装
+## npm安装
 
 ```bash
 $ npm install diffchinesebot
 ```
 
-### RequireJS (推荐引入方式)
+## RequireJS
 ```javascript
 require.config({
 	paths: {
-		diffChinese: './diffChineseBot/index.js'
+		diffChineseBot: './diffChineseBot/index.js'
 	}
 });
 
-require( [ 'diffChinese' ], function( diffChinese ) {
+require( [ 'diffChineseBot' ], function( diffChineseBot ) {
 	...
 });
 
 ```
 
-### 直接引用
+## 直接引用
 ```html
 <script src="./diffChineseBot.js"></script>
 <script>
-window.diffChinese(oldStr, newStr, point)
+window.diffChineseBot(beforeString, afterString, option)
 </script>
 ```
 
@@ -47,21 +47,41 @@ diffChineseBot包只包含一个函数diffChinese，可以这样使用:
 ```javascript
 var beforeString = 'the quick brown fox';
 var afterString = 'the quick brown dog';
-var point = 1
 
-var diff = diffChinese( beforeString, afterString, point );
+var diff = diffChineseBot( beforeString, afterString);
 
 // => { before: 'the quick brown <del>fox</del>', after: 'the quick brown <ins>dog</ins>' }
 ```
 
-第一个参数：旧字符串	String
+diffChineseBot函数第三个参数是可选的，接受一个参数配置对象
 
-第二个参数：新字符串	String
-
-第三个参数：不匹配度 	Number 默认可不传 不匹配度高于设定将不再进行比对高亮 (0-1)
-
-样式类名
-
-del-text  旧文本不匹配文本
-
-new-text  新文本不匹配文本
+<table style="width: 100%">
+  <thead>
+    <tr>
+        <td>名称</td>
+        <td>功能</td>
+        <td>默认值</td>
+        <td>可选值</td>
+    </tr>
+  </thead>
+  <tobody>
+    <tr>
+	<td>point</td>
+	<td>设置文本比对差异率上限 超出设定值后不再处理文本元素 什么也不会发生</td>
+	<td>空</td>
+	<td>0-1 Number</td>
+    </tr>
+    <tr>
+	<td>beforeClass</td>
+	<td>设置旧文本和新文本不同处的样式类名</td>
+	<td>del-text</td>
+	<td>String</td>
+    </tr>
+    <tr>
+	<td>afterClass</td>
+	<td>设置新文本和旧文本不同处的样式类名</td>
+	<td>new-text</td>
+	<td>String</td>
+    </tr>
+  </tobody>
+</table>

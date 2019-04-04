@@ -14,7 +14,6 @@ diffChineseBot
 
 
 ## npm安装
-
 ```bash
 $ npm install diffchinesebot
 ```

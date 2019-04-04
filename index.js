@@ -132,7 +132,6 @@
     return { before: os, after: ns };
   }
 
-
   // This example returns an object, but the module
   // can return a function as the exported value.
   return function (o, n, option) {

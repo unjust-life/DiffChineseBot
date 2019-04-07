@@ -49,7 +49,7 @@ var afterString = 'the quick brown dog';
 
 var diff = diffChineseBot( beforeString, afterString, option);
 
-// => { before: 'the quick brown <del>fox</del>', after: 'the quick brown <ins>dog</ins>' }
+// => { before: 'the quick brown <span class="del-text">fox</span>', after: 'the quick brown <span class="new-text">dog</span>' }
 ```
 
 - diffChineseBot( beforeString, afterString, option)
